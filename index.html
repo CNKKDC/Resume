@@ -6,12 +6,29 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap-grid.min.css" rel="stylesheet">
-<title>刘禹辰-个人简历</title>
-    <style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/css/swiper.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
+    <link rel="shortcut icon" href="img/fav.ico" type="image/x-icon" />
+    <title>刘禹辰-个人简历</title>
+    <style type="text/css">
+        @font-face{
+            font-family: "FangZhengShuSong";
+            src: url("font/FZSSJW.TTF");
+        }
+        @font-face{
+            font-family: "segoescb";
+            src: url("font/segoescb.ttf");
+        }
+        @font-face{
+            font-family: "FiraCode";
+            src: url("font/FiraCode.ttf");
+        }
         *{
             margin: 0;
             padding: 0;
             font-size: 16px;
+            font-family: "Fira Code","FangZhengShuSong";
             color: #444444;
             background-repeat: no-repeat;
             background-size: cover;
@@ -33,6 +50,18 @@
         a:hover{
             color: #003366;
         }
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #003366;
+        }
+        ::-webkit-scrollbar-corner {
+            display: none;
+        }
+        ::-webkit-scrollbar-button {
+            display: none;
+        }
         .header{
             width: 100%;
             height: 100%;
@@ -40,9 +69,10 @@
             overflow: hidden;
         }
         .page-title{
+            font-family: segoescb;
             font-size: 70px;
             color: #FFFFFF;
-            opacity: .3;
+            opacity: .5;
         }
         .content{
             padding: 0;
@@ -65,8 +95,8 @@
         .info{
             background: #FFFFFF;
             margin: 0;
-            padding-top: 120px;
-            padding-bottom: 50px;
+            padding-top: 80px;
+            padding-bottom: 30px;
         }
         .title::before{
             content: "";
@@ -129,7 +159,7 @@
             top: 40px;
             left: -45px;
         }
-        .intro,.skill{
+        .intro,.skill,.develop{
             padding-top: 30px;
             padding-bottom: 30px;
         }
@@ -145,13 +175,76 @@
             line-height: 22pt;
             text-align: justify;
         }
+        .develop{
+            background: #F8F8F8;
+        }
+        .develop .develop-swiper{
+            height: 250px;
+        }
+        .develop .develop-wrapper{
+            margin-top: 15px;
+            position: relative;
+        }
+        .develop .develop-swiper .develop-item{
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
+        .develop .develop-swiper .develop-item .develop-item-right, .develop .develop-swiper .develop-item .develop-item-left{
+            width: 100%;
+            height: 100%;
+        }
+        .develop .develop-swiper .develop-item .develop-item-left{
+        }
+        .develop .develop-swiper .develop-item .develop-item-right{
+            position: absolute;
+            padding-top: 40px;
+            background: rgba(0,0,0,.75);
+            /*background: rgba(255,255,255,.9);*/
+            left: 0;
+            top: 0;
+        }
+        .develop .develop-swiper .develop-item .develop-item-right span,.develop .develop-swiper .develop-item .develop-item-right p{
+            color: #FFFFFF;
+        }
+        .develop .develop-swiper .develop-item .develop-item-right p{
+            padding: 10px 30px;
+        }
+        .develop .develop-swiper .develop-item .develop-item-left img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .develop .develop-swiper .develop-item .develop-item-right p{
+            padding: 10px 20px;
+            text-indent: 25pt;
+            line-height: 22pt;
+            text-align: justify;
+        }
+        .develop-swiper-next, .develop-swiper-prev{display: none;}
+        .develop-swiper-pagination{
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 48%;
+            z-index: 100;
+        }
+        .develop-swiper-pagination .swiper-pagination-bullet{
+            background: #444444;
+            margin: 3px;
+        }
+        .develop-swiper-pagination .swiper-pagination-bullet-active{
+            background: #003366;
+            margin: 3px;
+        }
         .footer{
             background-image: url("img/header_bg.png");
             height: 300px;
             position: relative;
             padding: 0;
         }
-        .footer .footer-wapper{
+        .footer .footer-wrapper{
             width: 100%;
             height: 100%;
             position: absolute;
@@ -162,10 +255,11 @@
         .copyright{
             background: rgba(0,20,60,.3);
             width: 100%;
+            font-size: 12px;
             line-height: 30px;
             text-align: center;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -174,15 +268,81 @@
         .copyright span{
             color: #DDDDDD;
         }
-        @media screen and (min-width: 720px) {
-			.page-title{
-				font-size: 150px;
-			}
+        @media screen and (min-width: 576px) {
+            .page-title{
+                font-size: 80px;
+            }
             .content{
                 box-shadow: 0px 5px 20px -15px #444444;
             }
+        }
+        @media screen and (min-width: 768px) {
+			.page-title{
+				font-size: 100px;
+			}
+            .skill .skill-item{
+                padding: 10px 20px;
+            }
+            .develop .develop-swiper .develop-item{
+                position: relative;
+                padding: 30px;
+                height: 190px;
+            }
+            .develop .develop-swiper .develop-item .develop-item-right, .develop .develop-swiper .develop-item .develop-item-left{
+                display: inline-block;
+                position: relative;
+                background: none;
+                padding-top: 0;
+                width: 48%;
+            }
+            .develop .develop-swiper .develop-item .develop-item-left{
+                float: left;
+                height: 100%;
+            }
+            .develop .develop-swiper .develop-item .develop-item-right{
+                float: right;
+            }
+            .develop .develop-swiper .develop-item .develop-item-left img{
+                display: block;
+                border-radius: 10px;
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+            }
+            .develop .develop-swiper .develop-item .develop-item-right p{
+                padding: 10px 20px;
+                text-indent: 25pt;
+                line-height: 22pt;
+                text-align: justify;
+            }
+            .develop .develop-swiper .develop-item .develop-item-right span,.develop .develop-swiper .develop-item .develop-item-right p{
+                color: #444444;
+            }
+        }
+        @media screen and (min-width: 992px) {
+            .page-title{
+                font-size: 150px;
+            }
             .skill .skill-item{
                 padding: 10px 50px;
+            }
+            .develop-swiper-next, .develop-swiper-prev{
+                display: block;
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 100px;
+                fill: #444444;
+                z-index: 100;
+            }
+            .develop-swiper-next:hover, .develop-swiper-prev:hover{
+                fill: #003366;
+            }
+            .develop-swiper-next{
+                right: -50px;
+            }
+            .develop-swiper-prev{
+                left: -50px;
             }
         }
     </style>
@@ -225,31 +385,89 @@
         </div>
         <div class="skill">
             <span class="title">专业技能</span>
-            <div class="row m-0 p-3">
+            <div class="row m-0 px-3 pb-3">
                 <div class="skill-item col-12 col-md-4">
                     可以熟练使用 HTML、JavaScript、Bootstrap框架 进行前端开发。了解基于不同内核的浏览器的特性，前端代码兼容性强。
                 </div>
                 <div class="skill-item col-12 col-md-4">
-                    掌握基于Servlet框架的Java Web的开发，会搭建并配置Nginx、Tomcat服务器。可以使用C语言进行简单开发。掌握抓包技术、熟练使用Python爬取网络数据。
+                    掌握基于Servlet框架的Java Web的开发，会搭建并配置Nginx、Tomcat、IIS服务器。可以使用C语言进行简单开发。掌握抓包技术、熟练使用Python爬取网络数据。
                 </div>
                 <div class="skill-item col-12 col-md-4">
-                    可设计动态网页，了解网格系统、设计模式的常识。熟练掌握微信公众号设计与排版。掌握PS、PR、AI、AE技术，可利用新媒体技术制作视频、图标、动图。
+                    可设计动态网页，了解网格系统、设计模式的常识。熟练掌握微信公众号设计与排版。掌握PS、PR、AI、AE技术，可利用新媒体技术制作H5、视频、图标、动图。
                 </div>
 <!--                <div class="skill-item col-12 col-md-4 d-flex align-items-center justify-content-center">-->
 <!--                    会使用Java语言进行安卓开发-->
 <!--                </div>-->
             </div>
         </div>
+        <div class="develop">
+            <span class="title">开发经历</span>
+            <div class="row m-0 px-3 pb-3">
+                <div class="develop-wrapper  col-12 col-lg-8 offset-lg-2">
+                    <div class="swiper-container develop-swiper" id="develop-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class=" develop-item">
+                                    <div class="develop-item-left">
+                                        <img src="img/xywz.png" alt="">
+                                    </div>
+                                    <div class="develop-item-right">
+                                        <span class="small-title">校园网站</span>
+                                        <p>在校期间，为学校开发并维护图书馆、团委网站。利用博达网站后台进行内容发布。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class=" develop-item">
+                                    <div class="develop-item-left">
+                                        <img src="img/fwwb.png" alt="">
+                                    </div>
+                                    <div class="develop-item-right">
+                                        <span class="small-title">服务外包</span>
+                                        <p>参与服务外包比赛，开发过基于Java语言与Tomcat的积分商城系统。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <svg class="develop-swiper-prev" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M690.8 126.5l0.7 0.7c12.3 12.3 12.3 32.4 0 44.7l-340 340L691.6 852c12.5 12.5 12.5 32.9 0 45.4s-32.9 12.5-45.4 0L283.9 535s-0.1-0.1-0.2-0.1l-0.7-0.7c-12.3-12.3-12.3-32.4 0-44.7l363-363c12.4-12.3 32.5-12.3 44.8 0z"></path>
+                    </svg>
+                    <svg class="develop-swiper-next" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M333.1 126.5l-0.7 0.7c-12.3 12.3-12.3 32.4 0 44.7l339.9 339.9-340.1 340.1c-12.5 12.5-12.5 32.9 0 45.4s32.9 12.5 45.4 0L740 535s0.1-0.1 0.2-0.1l0.7-0.7c12.3-12.3 12.3-32.4 0-44.7l-363-363c-12.4-12.3-32.5-12.3-44.8 0z"></path>
+                    </svg>
+                    <div class="develop-swiper-pagination"></div>
+                    <script type="text/javascript">
+                        var develop = new Swiper("#develop-swiper",{
+                            speed:300,
+                            autoplay:true,
+                            preloadImages:false,
+                            loop : true,
+                            slidesPerView : 1,
+                            spaceBetween : 20,
+                            navigation: {
+                                nextEl: '.develop-swiper-next',
+                                prevEl: '.develop-swiper-prev',
+                            },
+                            pagination: {
+                                el: '.develop-swiper-pagination',
+                                clickable :true,
+                            },
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container footer">
-        <div class="footer-wapper"></div>
+        <div class="footer-wrapper"></div>
         <div class="col-12 col-md-4 offset-md-4 py-5">
             <span class="small-title" style="margin-bottom: 20px; color: #FFFFFF">联系方式</span>
             <div class="contact-item">
                 <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2791">
                     <path d="M679.538761 615.349833c-16.619516-4.456498-42.016953 23.685445-42.016953 23.685445-8.117888 8.117888-15.487739 21.817911-21.99699 36.363186-10.400884 23.242354-39.557948 31.860638-60.655452 17.602913-85.916788-58.06444-168.970366-141.340075-226.592738-227.297796-13.837146-20.641109-5.952572-48.862871 16.253172-60.016909 20.278859-10.18599 39.021735-20.033265 39.021735-20.033265l-0.152473-0.508583c13.866822-6.311753 21.666462-21.914102 17.600867-37.090756 0 0-116.005061-284.032962-149.172461-284.032962-103.732549 0-187.845249 84.1127-187.845249 187.845249 0 23.793916 4.590552 46.334281 12.730952 67.206658 87.034239 302.014498 324.763618 539.5341 626.778116 626.778116 20.871353 8.140401 43.621497 12.730952 67.415412 12.730952 103.731526 0 189.410907-79.103616 189.410907-182.836165C960.317609 775.745916 817.401642 670.753677 679.538761 615.349833z"></path>
                 </svg>
-                <span class="hint">13936400565</span>
+                <span class="hint">+86&nbsp;13936400565</span>
             </div>
             <div class="contact-item">
                 <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -269,7 +487,8 @@
             </a>
         </div>
         <div class="copyright">
-            <span>Power by LegendYC 版权所有</span>
+            <span>Using framework Bootstrap + Swiper</span><br/>
+            <span>Power by LegendYC | Update at 2020.7.7</span>
         </div>
     </div>
 </body>
